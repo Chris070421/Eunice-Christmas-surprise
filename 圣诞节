@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Christmas</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            transition: background 1s ease;
+        }
+
+        #welcome {
+            font-size: 2rem;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        #welcome:hover {
+            transform: scale(1.1);
+            color: #ffdd57;
+        }
+
+        .scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #scene1 {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            animation: fade-in-out 6s forwards;
+        }
+
+        #scene2 {
+            background: linear-gradient(to bottom, #4a148c, #880e4f);
+        }
+
+        #scene3 {
+            background: linear-gradient(to bottom, #0d47a1, #42a5f5);
+        }
+
+        #final {
+            background: linear-gradient(to bottom, #1b5e20, #4caf50);
+        }
+
+        @keyframes fade-in-out {
+            0% {
+                opacity: 0;
+            }
+            25%, 75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .message {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">Click to enter a magical Christmas experience!</div>
+
+    <div id="scene1" class="scene">
+        <div class="message">Even in the coldest winters, your warmth is all I need. ❄️❤️</div>
+    </div>
+
+    <div id="scene2" class="scene">
+        <div class="message">Like the stars on a winter night, your light guides my way. ✨🌌</div>
+    </div>
+
+    <div id="scene3" class="scene">
+        <div class="message">No matter how silent the night, your presence is my melody. 🎶🎄</div>
+    </div>
+
+    <div id="final" class="scene">
+        <div class="message">Happy Christmas Eunice 🎄✨<br>I may not always have the right words, but my love for you will always remain. ❤️</div>
+    </div>
+
+    <script>
+        const welcome = document.getElementById('welcome');
+        const scenes = document.querySelectorAll('.scene');
+        let currentScene = 0;
+
+        // Function to show the current scene
+        const showScene = (index) => {
+            if (index > 0) {
+                scenes[index - 1].style.display = 'none';
+            }
+            scenes[index].style.display = 'flex';
+
+            if (index < scenes.length - 1) {
+                setTimeout(() => showScene(index + 1), 6000);
+            }
+        };
+
+        // Show the first scene when the user clicks
+        welcome.addEventListener('click', () => {
+            welcome.style.display = 'none';
+            showScene(0);
+        });
+
+        // Listen for any key press to trigger scene transitions
+        document.addEventListener('keydown', () => {
+            if (currentScene < scenes.length - 1) {
+                currentScene++;
+                showScene(currentScene);
+            }
+        });
+    </script>
+</body>
+</html>
